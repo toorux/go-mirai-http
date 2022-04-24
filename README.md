@@ -25,8 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ```
 本项目同mirai主项目，采用 AGPLv3 协议开源。
 
+
+## TodoList
 <details>
-<summary>TodoList</summary>
  
 ### 认证与会话
  - [x] 认证
