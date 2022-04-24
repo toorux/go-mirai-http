@@ -2,11 +2,32 @@
 
 自己使用的Golang实现与 mirai-app-http对接封装（目前仅实现http协议），数据格式请求方式几本与官方文档一致， 开发中...
 
-[mirai-app-http 官方文档](https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#http-adapter)
+[mirai-app-http http-adapter 文档](https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#http-adapter)  
+[mirai-app-http 事件类型 文档](https://docs.mirai.mamoe.net/mirai-api-http/api/EventType.html#%E7%9B%AE%E5%BD%95)  
+[mirai-app-http 消息类型 文档](https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html#%E6%B6%88%E6%81%AF%E9%93%BE%E7%B1%BB%E5%9E%8B)  
 
+## 许可证
+```
+Copyright (C) 2019-2022 Mamoe Technologies and contributors.
 
-## Todo
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
 
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
+本项目同mirai主项目，采用 AGPLv3 协议开源。
+
+<details>
+<summary>TodoList</summary>
+ 
 ### 认证与会话
  - [x] 认证
  - [x] 绑定
@@ -71,3 +92,5 @@
  - [ ] 添加好友申请
  - [ ] 用户入群申请
  - [ ] Bot被邀请入群申请
+ 
+ <、details>
