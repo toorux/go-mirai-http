@@ -2,5 +2,5 @@ package conf
 
 // 提供给单元测试用的敏感数据配置，此文件为模板，请复制或重命名为`test_conf.go`后使用, `test_conf.go`文件不会被git提交
 
-var verifyKey = ""
-var qq uint64 = 100000
+var VerifyKey = ""
+var QQ uint64 = 100000

@@ -4,8 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-resty/resty/v2"
-	go_mirai_http "github.com/kgysf/go-mirai-http"
-	. "github.com/kgysf/go-mirai-http/model"
+	main "github.com/kgysf/go-mirai-http"
 	"strings"
 )
 
@@ -33,15 +32,12 @@ func HttpRequest[T any](url string, args ...any) (result T, err error) {
 	var header HttpHeader
 	var method = HttpMethodGet
 
-	notSessionKey := false
 	// 判断动态参数类型
 	for _, el := range args {
 		if p, ok := el.(HttpParams); ok {
 			params = p
 		} else if h, ok := el.(HttpHeader); ok {
 			header = h
-		} else if nsk, ok := el.(bool); ok {
-			notSessionKey = nsk
 		} else if m, ok := el.(HttpMethod); ok {
 			method = m
 		} else if b, ok := el.(HttpBody); ok {
@@ -50,7 +46,7 @@ func HttpRequest[T any](url string, args ...any) (result T, err error) {
 	}
 
 	if !strings.HasPrefix(url, "http://") && !strings.HasPrefix(url, "https://") {
-		_url := fmt.Sprintf("http://%s:%d", go_mirai_http.Host, go_mirai_http.Port)
+		_url := fmt.Sprintf("http://%s:%d", main.Host, main.Port)
 		if !strings.HasPrefix(url, "/") {
 			url = _url + url
 		} else {
@@ -60,10 +56,6 @@ func HttpRequest[T any](url string, args ...any) (result T, err error) {
 
 	req := resty.New().R()
 	req.SetHeader("Content-Type", "application/json")
-	if !notSessionKey {
-		// Todo: 传递session
-		req.SetHeader("Authorization", "session")
-	}
 	if params != nil {
 		req.SetQueryParams(params)
 	}
@@ -100,13 +92,13 @@ func HttpRequest[T any](url string, args ...any) (result T, err error) {
 }
 
 // HttpGet 发送 Http Get 请求
-func HttpGet[T any](url string, args ...any) (result HttpResult[T], err error) {
+func HttpGet[T any](url string, args ...any) (result T, err error) {
 	for i, el := range args {
 		if _, ok := el.(HttpMethod); ok {
 			args[i] = HttpMethodGet
 		}
 	}
-	return HttpRequest[HttpResult[T]](url, args...)
+	return HttpRequest[T](url, args...)
 }
 
 // HttpPost 发送 Http Post 请求
