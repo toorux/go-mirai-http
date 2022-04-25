@@ -22,6 +22,11 @@ type Friend struct {
 	Remark   string `json:"remark,omitempty"`
 }
 
+type GroupOrFriend struct {
+	Group
+	Friend
+}
+
 type Member struct {
 	Id                 int    `json:"id,omitempty"`
 	MemberName         string `json:"memberName,omitempty"`

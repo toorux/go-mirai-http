@@ -6,4 +6,5 @@ type VerifyResult struct {
 	Code    int
 	Msg     string
 	Session string
+	Err     error
 }

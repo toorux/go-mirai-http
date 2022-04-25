@@ -6,3 +6,5 @@ var VerifyKey = ""
 var QQ = 100000 // 机器人qq
 var FriendQQ = 100000  // 发送信息等操作的目标好友qq
 var Group = 100000  // 发送信息等操作的目标群
+// 上传文件与图片测试用的图片地址(请确保有足够权限)
+var ImgPath = "/Users/tsukirei/Downloads/BBFF0100BE264EA53144311A2DC24148.png"
