@@ -3,4 +3,6 @@ package conf
 // 提供给单元测试用的敏感数据配置，此文件为模板，请复制或重命名为`test_conf.go`后使用, `test_conf.go`文件不会被git提交
 
 var VerifyKey = ""
-var QQ uint64 = 100000
+var QQ = 100000 // 机器人qq
+var FriendQQ = 100000  // 发送信息等操作的目标好友qq
+var Group = 100000  // 发送信息等操作的目标群

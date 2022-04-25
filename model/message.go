@@ -72,7 +72,7 @@ type Message struct {
 	Subject      Subject        `json:"subject,omitempty"`
 	MessageChain []MessageChain `json:"messageChain,omitempty"`
 
-	Qq uint64 `json:"qq,omitempty"`
+	Qq int `json:"qq,omitempty"`
 
 	Friend    Friend `json:"friend,omitempty"`
 	Inputting bool   `json:"inputting,omitempty"`
@@ -87,25 +87,25 @@ type Message struct {
 	DurationSeconds int `json:"durationSeconds,omitempty"` //禁言时长，单位为秒
 	Operator        any `json:"operator,omitempty"`        //操作的管理员或群主信息
 
-	Invitor Operator `json:"invitor,omitempty"`
+	Invitor Member `json:"invitor,omitempty"`
 
-	AuthorId  uint64 `json:"authorId,omitempty"`
-	MessageId int    `json:"messageId,omitempty"`
-	Time      int    `json:"time,omitempty"`
+	AuthorId  int `json:"authorId,omitempty"`
+	MessageId int `json:"messageId,omitempty"`
+	Time      int `json:"time,omitempty"`
 
-	FromId uint64 `json:"fromId,omitempty"`
+	FromId int    `json:"fromId,omitempty"`
 	Action string `json:"action,omitempty"`
 	Suffix string `json:"suffix,omitempty"`
-	Target uint64 `json:"target,omitempty"`
+	Target int    `json:"target,omitempty"`
 
 	IsByBot bool `json:"isByBot,omitempty"`
 
-	Member Operator `json:"member,omitempty"`
+	Member Member `json:"member,omitempty"`
 
 	Honor string `json:"honor,omitempty"`
 
 	EventId int    `json:"eventId,omitempty"`
-	GroupId uint64 `json:"groupId,omitempty"`
+	GroupId int    `json:"groupId,omitempty"`
 	Nick    string `json:"nick,omitempty"`
 	Message string `json:"message,omitempty"`
 
@@ -118,28 +118,28 @@ type Message struct {
 	Args []CmdArgs `json:"args,omitempty"`
 }
 
-func (m Message) GetOperator() Operator {
+func (m Message) GetOperator() Member {
 	if m.Type == TypeFriendRecallEvent {
-		return Operator{}
+		return Member{}
 	} else {
 		str, err := json.Marshal(m.Operator)
 		if err != nil {
-			return Operator{}
+			return Member{}
 		}
-		var oper Operator
+		var oper Member
 		err2 := json.Unmarshal(str, &oper)
 		if err2 != nil {
-			return Operator{}
+			return Member{}
 		}
 		return oper
 	}
 }
 
-func (m Message) GetOperatorFriend() uint64 {
+func (m Message) GetOperatorFriend() int {
 	if m.Type != TypeFriendRecallEvent {
 		return 0
 	} else {
-		v, ok := m.Operator.(uint64)
+		v, ok := m.Operator.(int)
 		if ok {
 			return v
 		} else {
@@ -150,7 +150,7 @@ func (m Message) GetOperatorFriend() uint64 {
 
 // Sender 消息发送目标类型
 type Sender struct {
-	Id uint64 `json:"id,omitempty"`
+	Id int `json:"id,omitempty"`
 
 	// 好友消息 和 陌生人消息
 	Nickname string `json:"nickname,omitempty"`
@@ -171,7 +171,7 @@ type Sender struct {
 
 // Subject 消息发送目标类型
 type Subject struct {
-	Id uint64 `json:"id,omitempty"`
+	Id int `json:"id,omitempty"`
 
 	// 好友消息 和 陌生人消息
 	Nickname string `json:"nickname,omitempty"`
@@ -188,30 +188,6 @@ type Subject struct {
 	Kind               string `json:"kind,omitempty"`
 }
 
-// Group 消息发送目标来自的群信息
-type Group struct {
-	Id         uint64 `json:"id,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Permission string `json:"permission,omitempty"`
-}
-
-type Friend struct {
-	Id       uint64 `json:"id,omitempty"`
-	Nickname string `json:"nickname,omitempty"`
-	Remark   string `json:"remark,omitempty"`
-}
-
-type Operator struct {
-	Id                 uint64 `json:"id,omitempty"`
-	MemberName         string `json:"memberName,omitempty"`
-	Permission         string `json:"permission,omitempty"`
-	SpecialTitle       string `json:"specialTitle,omitempty"`
-	JoinTimestamp      int    `json:"joinTimestamp,omitempty"`
-	LastSpeakTimestamp int    `json:"lastSpeakTimestamp,omitempty"`
-	MuteTimeRemaining  int    `json:"muteTimeRemaining,omitempty"`
-	Group              Group  `json:"group,omitempty"`
-}
-
 type Client struct {
 	Id       int    `json:"id,omitempty"`
 	Platform string `json:"platform,omitempty"`
@@ -220,4 +196,11 @@ type Client struct {
 type CmdArgs struct {
 	Type string `json:"type,omitempty"`
 	Text string `json:"text,omitempty"`
+}
+
+type SendMsgResult struct {
+	Code      int    `json:"code"`
+	Msg       string `json:"msg"`
+	MessageId int    `json:"messageId"`
+	Err       error
 }

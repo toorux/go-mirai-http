@@ -4,6 +4,7 @@ package model
 type HttpResult[T any] struct {
 	Code int
 	Msg  string
+	Err  error
 	Data T
 }
 
@@ -21,3 +22,9 @@ var HttpResultCode = map[int]string{
 	30:  "消息过长",
 	400: "错误的访问，如参数错误等",
 }
+
+type PluginInfo struct {
+	Version string `json:"version"`
+}
+
+type PluginInfoResult HttpResult[PluginInfo]

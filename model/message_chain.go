@@ -81,19 +81,19 @@ type MessageChain struct {
 	//  - Quote: 被引用回复的原消息的messageId
 	//  - MarketFace: 商城表情唯一标识
 	//  - File: 文件识别id
-	Id uint64 `json:"id"`
+	Id int `json:"id"`
 
 	// Source
-	Time uint64 `json:"time"` // 时间戳
+	Time int `json:"time"` // 时间戳
 
 	// Quote 引用他人消息
-	GroupId  uint64         `json:"groupId"`  // 被引用回复的原消息所接收的群号，当为好友消息时为0
-	SenderId uint64         `json:"senderId"` // 被引用回复的原消息的发送者的QQ号
-	TargetId uint64         `json:"targetId"` // 被引用回复的原消息的接收者者的QQ号（或群号）
+	GroupId  int            `json:"groupId"`  // 被引用回复的原消息所接收的群号，当为好友消息时为0
+	SenderId int            `json:"senderId"` // 被引用回复的原消息的发送者的QQ号
+	TargetId int            `json:"targetId"` // 被引用回复的原消息的接收者者的QQ号（或群号）
 	Origin   []MessageChain `json:"origin"`   // 被引用回复的原消息的消息链对象 Todo: 有待测试各种不同类型消息引用的情况
 
 	// At
-	Target  uint64 `json:"target"`  // 群员QQ号
+	Target  int    `json:"target"`  // 群员QQ号
 	Display string `json:"display"` // At时显示的文字，发送消息时无效，自动使用群名片
 
 	// Face QQ表情
@@ -123,7 +123,7 @@ type MessageChain struct {
 
 	// Voice
 	VoiceId string `json:"voiceId"` // 语音的voiceId，不为空时将忽略url属性
-	Length  uint64 `json:"length"`  // 返回的语音长度, 发送消息时可以不传
+	Length  int    `json:"length"`  // 返回的语音长度, 发送消息时可以不传
 
 	// Image | FlashImage | Voice
 	//  - Image | FlashImage: 图片的URL，发送时可作网络图片的链接；接收时为腾讯图片服务器的链接，可用于图片下载
@@ -161,7 +161,7 @@ type MessageChain struct {
 	NodeList []ForwardMessage `json:"nodeList"`
 
 	// File
-	Size uint64 `json:"size"`
+	Size int `json:"size"`
 
 	// MiraiCode
 	Code string `json:"code"`
@@ -209,8 +209,8 @@ func ConvertMsgChain[T any](source MessageChain) (t T, err error) {
 }
 
 type ForwardMessage struct {
-	SenderId     uint64         `json:"senderId"`     // 发送人QQ号
-	Time         uint64         `json:"time"`         // 发送时间
+	SenderId     int            `json:"senderId"`     // 发送人QQ号
+	Time         int            `json:"time"`         // 发送时间
 	SenderName   string         `json:"senderName"`   // 显示名称
 	MessageChain []MessageChain `json:"messageChain"` // 消息数组
 	MessageId    int            `json:"messageId"`    // 可以只使用消息messageId，从缓存中读取一条消息作为节点
@@ -218,22 +218,22 @@ type ForwardMessage struct {
 
 type SourceMsgChain struct {
 	Type MessageChainType `json:"type"`
-	Id   uint64           `json:"id"`
-	Time uint64           `json:"time"`
+	Id   int              `json:"id"`
+	Time int              `json:"time"`
 }
 
 type QuoteMsgChain struct {
 	Type     MessageChainType `json:"type"`
-	Id       uint64           `json:"id"`
-	GroupId  uint64           `json:"groupId"`
-	SenderId uint64           `json:"senderId"`
-	TargetId uint64           `json:"targetId"`
+	Id       int              `json:"id"`
+	GroupId  int              `json:"groupId"`
+	SenderId int              `json:"senderId"`
+	TargetId int              `json:"targetId"`
 	Origin   []MessageChain   `json:"origin"`
 }
 
 type AtMsgChain struct {
 	Type    MessageChainType `json:"type"`
-	Target  uint64           `json:"target"`
+	Target  int              `json:"target"`
 	Display string           `json:"display"`
 }
 
@@ -274,7 +274,7 @@ type VoiceMsgChain struct {
 	Url     string           `json:"url"`
 	Path    interface{}      `json:"path"`
 	Base64  interface{}      `json:"base64"`
-	Length  uint64           `json:"length"`
+	Length  int              `json:"length"`
 }
 
 type XmlMsgChain struct {
@@ -328,7 +328,7 @@ type FileMsgChain struct {
 	Type MessageChainType `json:"type"`
 	Id   string           `json:"id"`
 	Name string           `json:"name"`
-	Size uint64           `json:"size"`
+	Size int              `json:"size"`
 }
 
 type MiraiCodeMsgChain struct {

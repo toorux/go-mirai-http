@@ -29,7 +29,7 @@ func TestCountMessage(t *testing.T) {
 
 	for {
 		retCM := CountMessage(session)
-		fmt.Printf("CountMessage Code: %d, Msg: %s, Data: %d\n", retCM.Code, retCM.Msg, retCM.Data)
+		//fmt.Printf("CountMessage Code: %d, Msg: %s, Data: %d\n", retCM.Code, retCM.Msg, retCM.Data)
 
 		if retCM.Data > 0 {
 			retMsg := GetMessage(2, session, retCM.Data)
@@ -41,6 +41,20 @@ func TestCountMessage(t *testing.T) {
 						fmt.Println("exit.")
 						return
 					}
+				}
+				if el.Type == model.TypeGroupMessage {
+					chain := el.MessageChain
+					var msg = ""
+					for _, item := range chain {
+						if item.Type == model.MsgChainTypeImage {
+							msg += "[图片]"
+						} else if item.Type == model.MsgChainTypeAt {
+							msg += item.Display
+						} else if item.Type == model.MsgChainTypePlain {
+							msg += item.Text + " "
+						}
+					}
+					fmt.Printf("[%s] %s: %s\n", el.Sender.Group.Name, el.Sender.MemberName, msg)
 				}
 			}
 		}
