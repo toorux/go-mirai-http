@@ -1,6 +1,6 @@
 # Go Mirai Http
 
-自己使用的Golang实现与 mirai-app-http对接封装（目前仅实现http协议），数据格式请求方式几本与官方文档一致， 开发中...
+自己使用的Golang实现与 mirai-app-http v2版本 对接封装（目前仅实现http协议），数据格式请求方式几本与官方文档一致， 开发中...
 
 [mirai-app-http http-adapter 文档](https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#http-adapter)  
 [mirai-app-http 事件类型 文档](https://docs.mirai.mamoe.net/mirai-api-http/api/EventType.html#%E7%9B%AE%E5%BD%95)  
