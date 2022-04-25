@@ -12,9 +12,9 @@ type MessagesResult model.HttpResult[[]model.Message]
 type MessageResult model.HttpResult[model.Message]
 
 // CountMessage 查看队列大小
-//  - 使用此方法获取 session 未读缓存消息的数量
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#%E6%9F%A5%E7%9C%8B%E9%98%9F%E5%88%97%E5%A4%A7%E5%B0%8F
+//  使用此方法获取 session 未读缓存消息的数量
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#%E6%9F%A5%E7%9C%8B%E9%98%9F%E5%88%97%E5%A4%A7%E5%B0%8F
 func CountMessage(sessionKey string) (result CountMsgResult) {
 	const url = "/countMessage"
 	params := pkg.HttpParams{"sessionKey": sessionKey}
@@ -57,9 +57,9 @@ func GetMessage(flag int, sessionKey string, count int) (result MessagesResult) 
 }
 
 // GetMessageForId 通过messageId获取信息
-//  - 当该messageId没有被缓存或缓存失效时，返回code 5(指定对象不存在)
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#通过messageid获取消息
+//  当该messageId没有被缓存或缓存失效时，返回code 5(指定对象不存在)
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#通过messageid获取消息
 func GetMessageForId(sessionKey string, id int) (result MessageResult) {
 	const url = "/messageFromId"
 	params := pkg.HttpParams{"sessionKey": sessionKey, "id": strconv.Itoa(id)}

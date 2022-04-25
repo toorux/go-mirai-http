@@ -12,9 +12,9 @@ type FileListResult HttpResult[[]File]
 type FileInfoResult HttpResult[File]
 
 // FileList 查看文件列表
-//  - 使用此方法查看文件列表, 建议使用 FileListForGroup
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#查看文件列表
+//  使用此方法查看文件列表, 建议使用 FileListForGroup
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#查看文件列表
 // ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
 func FileList(sessionKey string, file FileParams, offset int, size int) (result FileListResult) {
 	const url = "/file/list"
@@ -59,9 +59,9 @@ func FileListForGroup(sessionKey string, id string, path string, group int, with
 }
 
 // FileInfo 获取文件信息
-//  - 使用此方法获取文件信息, 建议使用 FileInfoForId
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#获取文件信息
+//  使用此方法获取文件信息, 建议使用 FileInfoForId
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#获取文件信息
 // ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
 func FileInfo(sessionKey string, file FileParams) (result FileInfoResult) {
 	const url = "/file/info"
@@ -106,7 +106,7 @@ func FileInfoForId(sessionKey string, id string, group int, withDownloadInfo boo
 //  - withDownloadInfo: 是否附带文件下载信息, 此接口不建议附带
 //  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
 //  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#获取文件信息
-//  ⚠️警告: 由于path的不准确性，建议使用 FileInfoForId 查询
+// ⚠️警告: 由于path的不准确性，建议使用 FileInfoForId 查询
 func FileInfoForPath(sessionKey string, path string, group int, withDownloadInfo bool) (result FileInfoResult) {
 	fileParam := FileParams{
 		Path:             path,
@@ -117,11 +117,13 @@ func FileInfoForPath(sessionKey string, path string, group int, withDownloadInfo
 }
 
 // FileMkdir 创建文件夹
-//  - 使用此方法创建文件夹, 建议使用 FileMkdirInRoot
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#创建文件夹
-//  ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
-//  ⚠️警告: 此接口似乎也存在bug， 不建议使用
+//  使用此方法创建文件夹, 建议使用 FileMkdirInRoot
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#创建文件夹
+//
+// ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
+//
+// ⚠️警告: 此接口似乎也存在bug， 不建议使用
 func FileMkdir(sessionKey string, file FileParams, directoryName string) (result FileInfoResult) {
 	const url = "/file/mkdir"
 	body := map[string]any{
@@ -142,10 +144,10 @@ func FileMkdir(sessionKey string, file FileParams, directoryName string) (result
 }
 
 // FileMkdirInRoot 在群文件根目录创建文件夹
-//  - 使用此方法在群文件根目录创建文件夹，此函数为 FileMkdir 函数的封装
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#获取文件信息
-//  ⚠️警告: 此接口似乎也存在bug， 不建议使用
+//  使用此方法在群文件根目录创建文件夹，此函数为 FileMkdir 函数的封装
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#获取文件信息
+// ⚠️警告: 此接口似乎也存在bug， 不建议使用
 func FileMkdirInRoot(sessionKey string, group int, directoryName string) (result FileInfoResult) {
 	fileParam := FileParams{
 		Id:     "",
@@ -157,10 +159,10 @@ func FileMkdirInRoot(sessionKey string, group int, directoryName string) (result
 }
 
 // FileDelete 删除文件
-//  - 使用此方法删除文件, 建议使用 FileDeleteForId
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#删除文件
-//  ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
+//  使用此方法删除文件, 建议使用 FileDeleteForId
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#删除文件
+// ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
 func FileDelete(sessionKey string, file FileParams) (result HttpResult[any]) {
 	const url = "/file/delete"
 	body := map[string]any{
@@ -180,9 +182,9 @@ func FileDelete(sessionKey string, file FileParams) (result HttpResult[any]) {
 }
 
 // FileDeleteForId 根据文件id删除文件
-//  - 使用此方法根据文件id删除文件, 此函数为 FileDelete 函数封装
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#删除文件
+//  使用此方法根据文件id删除文件, 此函数为 FileDelete 函数封装
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#删除文件
 func FileDeleteForId(sessionKey string, id string, group int) (result HttpResult[any]) {
 	fileParam := FileParams{
 		Id:     id,
@@ -192,10 +194,10 @@ func FileDeleteForId(sessionKey string, id string, group int) (result HttpResult
 }
 
 // FileMove 移动文件
-//  - 使用此方法移动文件
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#移动文件
-//  ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
+//  使用此方法移动文件
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#移动文件
+// ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
 func FileMove(sessionKey string, file FileParams, moveTo string, moveToPath string) (result HttpResult[any]) {
 	const url = "/file/move"
 	body := map[string]any{
@@ -218,11 +220,13 @@ func FileMove(sessionKey string, file FileParams, moveTo string, moveToPath stri
 }
 
 // FileRename 重命名文件
-//  - 使用此方法重命名文件
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#重命名文件
-//  ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
-//  ⚠️警告: 此接口权限貌似存在一些问题
+//  使用此方法重命名文件
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#重命名文件
+//
+// ⚠️警告: 目前官方仅支持群文件操作，所有好友相关字段均为保留字段
+//
+// ⚠️警告: 此接口权限貌似存在一些问题
 func FileRename(sessionKey string, file FileParams, renameTo string) (result HttpResult[any]) {
 	const url = "/file/rename"
 	body := map[string]any{
@@ -244,10 +248,10 @@ func FileRename(sessionKey string, file FileParams, renameTo string) (result Htt
 }
 
 // FileRenameForId 根据id重命名文件
-//  - 使用此方法重命名文件, 此函数为 FileRename 函数的封装
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#重命名文件
-//  ⚠️警告: 此接口权限貌似存在一些问题
+//  使用此方法重命名文件, 此函数为 FileRename 函数的封装
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#重命名文件
+// ⚠️警告: 此接口权限貌似存在一些问题
 func FileRenameForId(sessionKey string, id string, renameTo string, group int) (result HttpResult[any]) {
 	fileParam := FileParams{
 		Id:     id,

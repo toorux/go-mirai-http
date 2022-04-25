@@ -6,9 +6,9 @@ import (
 )
 
 // SendFriendMessage 发送好友消息
-//  - 使用此方法向指定好友发送消息, quoteId为引用消息id， 无需引用传0
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送好友消息
+//  使用此方法向指定好友发送消息, quoteId为引用消息id， 无需引用传0
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送好友消息
 func SendFriendMessage(sessionKey string, target int, chain []MessageChain, quoteId int) (result SendMsgResult) {
 	const url = "/sendFriendMessage"
 	body := map[string]any{
@@ -29,9 +29,9 @@ func SendFriendMessage(sessionKey string, target int, chain []MessageChain, quot
 }
 
 // SendGroupMessage 发送群消息
-//  - 使用此方法向指定群发送消息, quoteId为引用消息id， 无需引用传0
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送群消息
+//  使用此方法向指定群发送消息, quoteId为引用消息id， 无需引用传0
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送群消息
 func SendGroupMessage(sessionKey string, target int, chain []MessageChain, quoteId int) (result SendMsgResult) {
 	const url = "/sendGroupMessage"
 	body := map[string]any{
@@ -52,9 +52,9 @@ func SendGroupMessage(sessionKey string, target int, chain []MessageChain, quote
 }
 
 // SendTempMessage 发送临时会话消息
-//  - 使用此方法向指定群成员发送临时消息, quoteId为引用消息id， 无需引用传0
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送临时会话消息
+//  使用此方法向指定群成员发送临时消息, quoteId为引用消息id， 无需引用传0
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送临时会话消息
 func SendTempMessage(sessionKey string, group int, qq int, chain []MessageChain, quoteId int) (result SendMsgResult) {
 	const url = "/sendTempMessage"
 	body := map[string]any{
@@ -76,9 +76,9 @@ func SendTempMessage(sessionKey string, group int, qq int, chain []MessageChain,
 }
 
 // SendNudge 发送头像戳一戳消息
-//  - 使用此方法发送头像戳一戳消息
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送头像戳一戳消息
+//  使用此方法发送头像戳一戳消息
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送头像戳一戳消息
 // ⚠️警告: 不建议直接使用此函数，建议使用 SendNudgeFriend / SendNudgeMember
 func SendNudge(sessionKey string, target int, subject int, kind string) (result HttpResult[any]) {
 	const url = "/sendNudge"
@@ -98,9 +98,9 @@ func SendNudge(sessionKey string, target int, subject int, kind string) (result 
 }
 
 // SendNudgeFriend 发送好友头像戳一戳消息
-//  - 使用此方法向指定好友发送头像戳一戳消息
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送头像戳一戳消息
+//  使用此方法向指定好友发送头像戳一戳消息
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#发送头像戳一戳消息
 func SendNudgeFriend(sessionKey string, qq int) (result HttpResult[any]) {
 	return SendNudge(sessionKey, qq, qq, "Friend")
 }
@@ -114,9 +114,9 @@ func SendNudgeMember(sessionKey string, group int, qq int) (result HttpResult[an
 }
 
 // Recall 撤回消息
-//  - 使用此方法根据messageId撤回指定消息
-//  - 用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
-//  - NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#撤回消息
+//  使用此方法根据messageId撤回指定消息
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#撤回消息
 // ⚠️警告: 不建议直接使用此函数，建议使用 SendNudgeFriend / SendNudgeMember
 func Recall(sessionKey string, messageId int) (result HttpResult[any]) {
 	const url = "/recall"
