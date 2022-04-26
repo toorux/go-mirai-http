@@ -1,6 +1,6 @@
 # Go Mirai Http
 
-自己使用的Golang实现与 mirai-api-http v2版本 对接封装（目前仅实现http协议），数据格式请求方式基本与官方文档一致  
+刚学习golang的练手项目，自己使用的Golang实现与 mirai-api-http v2版本 对接封装（目前仅实现http协议），数据格式请求方式基本与官方文档一致  
 
 具体使用方法看http包下的代码，所有函数都有注释和单元测试， 单元测试可以当做案例，没有单元测试的可能是在`message_test.go`中 
 
@@ -8,7 +8,8 @@
 
 所有消息类型(MessageChain中元素的类型)都在model包下的`message_chain.go`中， 以`MsgChainType`开头，如：`MsgChainTypeImage`
 
-有空了再写详细文档
+### 初始化
+使用之前需要先初始化， 主要是设置下mirai-api-http的地址和端口，初始化的代码在主目录mirai.go中，但是我自己还没用过所以文档不好写，使用过后有空了再写详细文档
 
 [mirai-app-http http-adapter 文档](https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#http-adapter)  
 [mirai-app-http 事件类型 文档](https://docs.mirai.mamoe.net/mirai-api-http/api/EventType.html#%E7%9B%AE%E5%BD%95)  
