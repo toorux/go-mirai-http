@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"github.com/kgysf/go-mirai-http/internal/pkg"
 	"github.com/kgysf/go-mirai-http/model"
 	"strconv"
@@ -46,7 +45,7 @@ func GetMessage(flag int, sessionKey string, count int) (result MessagesResult) 
 		"sessionKey": sessionKey,
 		"count":      strconv.Itoa(count),
 	}
-	fmt.Println(urls[flag-1])
+	//fmt.Println(urls[flag-1])
 	ret, err := pkg.HttpGet[MessagesResult](urls[flag-1], params, true)
 	if err != nil {
 		result = MessagesResult{Code: -10000, Msg: err.Error(), Err: err}

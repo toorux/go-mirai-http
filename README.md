@@ -1,6 +1,14 @@
 # Go Mirai Http
 
-自己使用的Golang实现与 mirai-app-http v2版本 对接封装（目前仅实现http协议），数据格式请求方式几本与官方文档一致， 开发中...
+自己使用的Golang实现与 mirai-api-http v2版本 对接封装（目前仅实现http协议），数据格式请求方式基本与官方文档一致  
+
+具体使用方法看http包下的代码，所有函数都有注释和单元测试， 单元测试可以当做案例，没有单元测试的可能是在`message_test.go`中 
+
+所有消息和事件类型枚举常量都在model包下的`message.go`中，以`Type`开头， 如： `TypeFriendMessage`
+
+所有消息类型(MessageChain中元素的类型)都在model包下的`message_chain.go`中， 以`MsgChainType`开头，如：`MsgChainTypeImage`
+
+有空了再写详细文档
 
 [mirai-app-http http-adapter 文档](https://docs.mirai.mamoe.net/mirai-api-http/adapter/HttpAdapter.html#http-adapter)  
 [mirai-app-http 事件类型 文档](https://docs.mirai.mamoe.net/mirai-api-http/api/EventType.html#%E7%9B%AE%E5%BD%95)  
@@ -71,27 +79,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  - [x] 语音文件上传
  - [x] 群文件上传
 ### 账号管理
- - [ ] 删除好友
+ - [x] 删除好友
 ### 群管理
- - [ ] 禁言群成员
- - [ ] 解除群成员禁言
- - [ ] 移除群成员
- - [ ] 退出群聊
- - [ ] 全体禁言
- - [ ] 解除全体禁言
- - [ ] 设置群精华消息
- - [ ] 获取群设置
- - [ ] 修改群设置
- - [ ] 获取群员设置
- - [ ] 修改群员设置
- - [ ] 修改群员管理员
+ - [x] 禁言群成员
+ - [x] 解除群成员禁言
+ - [x] 移除群成员
+ - [x] 退出群聊
+ - [x] 全体禁言
+ - [x] 解除全体禁言
+ - [x] 设置群精华消息
+ - [x] 获取群设置
+ - [x] 修改群设置
+ - [x] 获取群员设置
+ - [x] 修改群员设置
+ - [x] 修改群员管理员
 ### 群公告
- - [ ] 获取群公告
- - [ ] 发布群公告
- - [ ] 删除群公告
+ - [x] 获取群公告
+ - [x] 发布群公告
+ - [x] 删除群公告
 ### 事件处理
- - [ ] 添加好友申请
- - [ ] 用户入群申请
- - [ ] Bot被邀请入群申请
+ - [x] 添加好友申请
+ - [x] 用户入群申请
+ - [x] Bot被邀请入群申请
  
  </details>

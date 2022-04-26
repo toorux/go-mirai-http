@@ -55,6 +55,23 @@ func TestCountMessage(t *testing.T) {
 						}
 					}
 					fmt.Printf("[%s] %s: %s\n", el.Sender.Group.Name, el.Sender.MemberName, msg)
+					if msg == "精华测试 " {
+						mid := el.MessageChain[0].Id
+						retX := SetEssence(session, mid)
+						fmt.Println("set essence: ", retX, mid)
+					}
+				}
+				if el.Type == model.TypeNewFriendRequestEvent {
+					friend, err := NewFriendEvent(session, el, 1, "肯定要先拒绝在同意啊")
+					fmt.Println("[event] new friend: ", friend, err)
+				}
+				if el.Type == model.TypeMemberJoinRequestEvent {
+					group, err := MemberJoinRequestEvent(session, el, 1, "肯定要先拒绝在同意啊")
+					fmt.Println("[event] new member: ", group, err)
+				}
+				if el.Type == model.TypeBotInvitedJoinGroupRequestEvent {
+					group, err := BotInvJoinGroupEvent(session, el, 1, "肯定要先拒绝在同意啊")
+					fmt.Println("[event] BotInvitedJoinGroupRequestEvent: ", group, err)
 				}
 			}
 		}

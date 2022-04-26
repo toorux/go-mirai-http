@@ -110,16 +110,33 @@ func MemberProfile(sessionKey string, groupId int, memberId int) (result Profile
 //  此接口获取任意QQ用户的资料
 //  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
 //  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#获取QQ用户资料
-//
-// ⚠️警告: 此条API存疑，按照文档的接口地址调用会直接404，issue已有相关问题但直到本函数编写时尚未解决
-//  相关issue: https://github.com/project-mirai/mirai-api-http/issues
-//  相关代码地址: https://github.com/project-mirai/mirai-api-http/blob/master/mirai-api-http/src/main/kotlin/net/mamoe/mirai/api/http/adapter/http/router/info.kt
+// ⚠️警告: 此条API需要 mirai-api-http 2.5.0及以上版本
 func UserProfile(sessionKey string, id int) (result Profile, err error) {
 	const url = "/userProfile"
 	params := pkg.HttpParams{"sessionKey": sessionKey, "target": strconv.Itoa(id)}
 	ret, _err := pkg.HttpGet[Profile](url, params)
 	if _err != nil {
 		err = _err
+	} else {
+		result = ret
+	}
+	return
+}
+
+// DeleteFriend 删除好友
+//  使用此方法删除指定好友
+//  用法同官方文档，返回值增加msg字段，错误代码-10000为自定义错误， 错误信息见msg字段
+//  NOTE: https://docs.mirai.mamoe.net/mirai-api-http/api/API.html#删除好友
+// ⚠️警告: 此接口未测试
+func DeleteFriend(sessionKey string, target int) (result HttpResult[any]) {
+	const url = "/deleteFriend"
+	body := map[string]any{
+		"sessionKey": sessionKey,
+		"target":     target,
+	}
+	ret, _err := pkg.HttpPost[HttpResult[any]](url, body)
+	if _err != nil {
+		result = HttpResult[any]{Code: -10000, Msg: _err.Error(), Err: _err}
 	} else {
 		result = ret
 	}
