@@ -1,4 +1,4 @@
-module github.com/kgysf/go-mirai-http
+module github.com/toorux/go-mirai-http
 
 go 1.18
 
