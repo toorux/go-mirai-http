@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-resty/resty/v2"
-	main "github.com/kgysf/go-mirai-http"
+	main "github.com/toorux/go-mirai-http"
 	"strings"
 )
 

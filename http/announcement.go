@@ -2,8 +2,8 @@ package http
 
 import (
 	"fmt"
-	"github.com/kgysf/go-mirai-http/internal/pkg"
-	. "github.com/kgysf/go-mirai-http/model"
+	"github.com/toorux/go-mirai-http/internal/pkg"
+	. "github.com/toorux/go-mirai-http/model"
 	"strconv"
 )
 

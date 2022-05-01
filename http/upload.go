@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-resty/resty/v2"
-	main "github.com/kgysf/go-mirai-http"
-	. "github.com/kgysf/go-mirai-http/model"
+	main "github.com/toorux/go-mirai-http"
+	. "github.com/toorux/go-mirai-http/model"
 	"strconv"
 )
 

@@ -3,7 +3,7 @@ package model
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/kgysf/go-mirai-http/internal/pkg"
+	"github.com/toorux/go-mirai-http/internal/pkg"
 	"strings"
 )
 

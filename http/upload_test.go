@@ -2,7 +2,7 @@ package http
 
 import (
 	"fmt"
-	"github.com/kgysf/go-mirai-http/conf"
+	"github.com/toorux/go-mirai-http/conf"
 	"testing"
 )
 

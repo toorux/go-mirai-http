@@ -3,10 +3,10 @@ package pkg
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/kgysf/go-mirai-http/model"
+	"github.com/toorux/go-mirai-http/model"
 	"io/ioutil"
 
-	//. "github.com/kgysf/go-mirai-http/pkg/model"
+	//. "github.com/toorux/go-mirai-http/pkg/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"

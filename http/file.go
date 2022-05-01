@@ -1,11 +1,11 @@
 package http
 
 import (
-	"github.com/kgysf/go-mirai-http/internal/pkg"
+	"github.com/toorux/go-mirai-http/internal/pkg"
 	"strconv"
 
 	//"fmt"
-	. "github.com/kgysf/go-mirai-http/model"
+	. "github.com/toorux/go-mirai-http/model"
 )
 
 type FileListResult HttpResult[[]File]
