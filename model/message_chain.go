@@ -27,7 +27,7 @@ const (
 	MsgChainTypeDice           MessageChainType = "Dice"           //
 	MsgChainTypeMarketFace     MessageChainType = "MarketFace"     //
 	MsgChainTypeMusicShare     MessageChainType = "MusicShare"     //
-	MsgChainTypeForwardMessage MessageChainType = "ForwardMessage" //
+	MsgChainTypeForwardMessage MessageChainType = "Forward" //
 	MsgChainTypeFile           MessageChainType = "File"           //
 	MsgChainTypeMiraiCode      MessageChainType = "MiraiCode"      //
 )
