@@ -49,7 +49,7 @@ var MessageChainTypeValue = map[MessageChainType]any{
 	"dice":           DiceMsgChain{},
 	"marketFace":     MarketFaceMsgChain{},
 	"musicShare":     MusicShareMsgChain{},
-	"forwardMessage": ForwardMessageMsgChain{},
+	"Forward": ForwardMessageMsgChain{},
 	"file":           FileMsgChain{},
 	"miraiCode":      MiraiCodeMsgChain{},
 }
