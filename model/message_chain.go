@@ -11,47 +11,47 @@ import (
 type MessageChainType string
 
 const (
-	MsgChainTypeSource         MessageChainType = "Source"         //
-	MsgChainTypeQuote          MessageChainType = "Quote"          //
-	MsgChainTypeAt             MessageChainType = "At"             //
-	MsgChainTypeAtAll          MessageChainType = "AtAll"          //
-	MsgChainTypeFace           MessageChainType = "Face"           //
-	MsgChainTypePlain          MessageChainType = "Plain"          //
-	MsgChainTypeImage          MessageChainType = "Image"          //
-	MsgChainTypeFlashImage     MessageChainType = "FlashImage"     //
-	MsgChainTypeVoice          MessageChainType = "Voice"          //
-	MsgChainTypeXml            MessageChainType = "Xml"            //
-	MsgChainTypeJson           MessageChainType = "Json"           //
-	MsgChainTypeApp            MessageChainType = "App"            //
-	MsgChainTypePoke           MessageChainType = "Poke"           //
-	MsgChainTypeDice           MessageChainType = "Dice"           //
-	MsgChainTypeMarketFace     MessageChainType = "MarketFace"     //
-	MsgChainTypeMusicShare     MessageChainType = "MusicShare"     //
-	MsgChainTypeForwardMessage MessageChainType = "Forward" //
-	MsgChainTypeFile           MessageChainType = "File"           //
-	MsgChainTypeMiraiCode      MessageChainType = "MiraiCode"      //
+	MsgChainTypeSource         MessageChainType = "Source"     //
+	MsgChainTypeQuote          MessageChainType = "Quote"      //
+	MsgChainTypeAt             MessageChainType = "At"         //
+	MsgChainTypeAtAll          MessageChainType = "AtAll"      //
+	MsgChainTypeFace           MessageChainType = "Face"       //
+	MsgChainTypePlain          MessageChainType = "Plain"      //
+	MsgChainTypeImage          MessageChainType = "Image"      //
+	MsgChainTypeFlashImage     MessageChainType = "FlashImage" //
+	MsgChainTypeVoice          MessageChainType = "Voice"      //
+	MsgChainTypeXml            MessageChainType = "Xml"        //
+	MsgChainTypeJson           MessageChainType = "Json"       //
+	MsgChainTypeApp            MessageChainType = "App"        //
+	MsgChainTypePoke           MessageChainType = "Poke"       //
+	MsgChainTypeDice           MessageChainType = "Dice"       //
+	MsgChainTypeMarketFace     MessageChainType = "MarketFace" //
+	MsgChainTypeMusicShare     MessageChainType = "MusicShare" //
+	MsgChainTypeForwardMessage MessageChainType = "Forward"    //
+	MsgChainTypeFile           MessageChainType = "File"       //
+	MsgChainTypeMiraiCode      MessageChainType = "MiraiCode"  //
 )
 
 var MessageChainTypeValue = map[MessageChainType]any{
-	"source":         SourceMsgChain{},
-	"quote":          QuoteMsgChain{},
-	"at":             AtMsgChain{},
-	"atAll":          AtAllMsgChain{},
-	"face":           FaceMsgChain{},
-	"plain":          PlainMsgChain{},
-	"image":          ImageMsgChain{},
-	"flashImage":     FlashImageMsgChain{},
-	"voice":          VoiceMsgChain{},
-	"xml":            XmlMsgChain{},
-	"json":           JsonMsgChain{},
-	"app":            AppMsgChain{},
-	"poke":           PokeMsgChain{},
-	"dice":           DiceMsgChain{},
-	"marketFace":     MarketFaceMsgChain{},
-	"musicShare":     MusicShareMsgChain{},
-	"Forward": ForwardMessageMsgChain{},
-	"file":           FileMsgChain{},
-	"miraiCode":      MiraiCodeMsgChain{},
+	"source":     SourceMsgChain{},
+	"quote":      QuoteMsgChain{},
+	"at":         AtMsgChain{},
+	"atAll":      AtAllMsgChain{},
+	"face":       FaceMsgChain{},
+	"plain":      PlainMsgChain{},
+	"image":      ImageMsgChain{},
+	"flashImage": FlashImageMsgChain{},
+	"voice":      VoiceMsgChain{},
+	"xml":        XmlMsgChain{},
+	"json":       JsonMsgChain{},
+	"app":        AppMsgChain{},
+	"poke":       PokeMsgChain{},
+	"dice":       DiceMsgChain{},
+	"marketFace": MarketFaceMsgChain{},
+	"musicShare": MusicShareMsgChain{},
+	"forward":    ForwardMessageMsgChain{},
+	"file":       FileMsgChain{},
+	"miraiCode":  MiraiCodeMsgChain{},
 }
 
 type MessageChain struct {
@@ -183,6 +183,9 @@ func (m MessageChain) ConvertType() (t any, err error) {
 		return
 	}
 	_type := MessageChainTypeValue[MessageChainType(strings.ToLower(string(m.Type)))]
+	if _type == nil {
+		return m, fmt.Errorf(string(m.Type) + "is nil")
+	}
 	t, err = pkg.ConvertStruct(m, &_type)
 	return
 }
