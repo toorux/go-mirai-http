@@ -1,6 +1,8 @@
 package http
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/toorux/go-mirai-http/internal/pkg"
 	. "github.com/toorux/go-mirai-http/model"
 )
@@ -42,6 +44,8 @@ func SendGroupMessage(sessionKey string, target int, chain []MessageChain, quote
 	if quoteId != 0 {
 		body["quote"] = quoteId
 	}
+	marshal, err := json.Marshal(body)
+	fmt.Println(string(marshal), err)
 	ret, _err := pkg.HttpPost[SendMsgResult](url, body)
 	if _err != nil {
 		result = SendMsgResult{Code: -10000, Msg: _err.Error(), Err: _err}

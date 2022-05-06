@@ -21,10 +21,10 @@ func TestSendFriendMessage(t *testing.T) {
 		fmt.Printf("Release Code: %d, Msg: %s\n", retRelease.Code, retRelease.Msg)
 	}()
 
-	var msg = []MessageChain{
-		MessageChain{Type: MsgChainTypeImage, Url: "http://c2cpicdw.qpic.cn/offpic_new/2429277816/000000000-000000000-6C509B8B8DAD8D1F1CF4C6F54714A59F/0?term=2"},
-	}
-	var retSend SendMsgResult
+	//var msg = []MessageChain{
+	//	MessageChain{Type: MsgChainTypeImage, Url: "http://c2cpicdw.qpic.cn/offpic_new/2429277816/000000000-000000000-6C509B8B8DAD8D1F1CF4C6F54714A59F/0?term=2"},
+	//}
+	//var retSend SendMsgResult
 
 	//retSend = SendFriendMessage(session, conf.FriendQQ, msg, 0)
 	//fmt.Println("send friend msg: ", retSend)
@@ -34,8 +34,8 @@ func TestSendFriendMessage(t *testing.T) {
 
 	//time.Sleep(time.Millisecond * 1000)
 
-	retSend = SendGroupMessage(session, conf.Group, msg, retSend.MessageId)
-	fmt.Println("send group quote msg: ", retSend)
+	//retSend = SendGroupMessage(session, conf.Group, msg, retSend.MessageId)
+	//fmt.Println("send group quote msg: ", retSend)
 
 	//retSend = SendTempMessage(session, conf.Group, conf.FriendQQ, msg, 0)
 	//fmt.Println("send temp msg: ", retSend)
@@ -49,5 +49,22 @@ func TestSendFriendMessage(t *testing.T) {
 
 	//isOk = Recall(session, retSend.MessageId)
 	//fmt.Println("send recall: ", isOk)
+
+	nodeList := []ForwardMessage{
+		{
+			SenderId:   conf.QQ,
+			Time:       0,
+			SenderName: "[asd] 查询结果",
+			MessageChain: []MessageChain{
+				{Type: "Plain", Text: "adasdasdasd"},
+				{Type: "Plain", Text: "adasdasdasdasdsad"},
+			},
+		},
+	}
+	chains := []MessageChain{
+		{Type: "Forward", NodeList: nodeList},
+	}
+	result := SendGroupMessage(session, conf.Group, chains, 0)
+	fmt.Println(result)
 
 }

@@ -36,19 +36,19 @@ var MessageChainTypeValue = map[MessageChainType]any{
 	"source":     SourceMsgChain{},
 	"quote":      QuoteMsgChain{},
 	"at":         AtMsgChain{},
-	"atAll":      AtAllMsgChain{},
+	"atall":      AtAllMsgChain{},
 	"face":       FaceMsgChain{},
 	"plain":      PlainMsgChain{},
 	"image":      ImageMsgChain{},
-	"flashImage": FlashImageMsgChain{},
+	"flashimage": FlashImageMsgChain{},
 	"voice":      VoiceMsgChain{},
 	"xml":        XmlMsgChain{},
 	"json":       JsonMsgChain{},
 	"app":        AppMsgChain{},
 	"poke":       PokeMsgChain{},
 	"dice":       DiceMsgChain{},
-	"marketFace": MarketFaceMsgChain{},
-	"musicShare": MusicShareMsgChain{},
+	"marketface": MarketFaceMsgChain{},
+	"musicshare": MusicShareMsgChain{},
 	"forward":    ForwardMessageMsgChain{},
 	"file":       FileMsgChain{},
 	"miraiCode":  MiraiCodeMsgChain{},
@@ -219,6 +219,20 @@ type ForwardMessage struct {
 	MessageId    int            `json:"messageId"`    // 可以只使用消息messageId，从缓存中读取一条消息作为节点
 }
 
+func (m ForwardMessage) MarshalJSON() (b []byte, e error) {
+	var t = map[string]any{
+		"senderId":     m.SenderId,
+		"time":         0,
+		"senderName":   m.SenderName,
+		"messageChain": m.MessageChain,
+	}
+	if m.MessageId != 0 {
+		t["messageId"] = m.MessageId
+	}
+	b, e = json.Marshal(t)
+	return
+}
+
 type SourceMsgChain struct {
 	Type MessageChainType `json:"type"`
 	Id   int              `json:"id"`
@@ -324,7 +338,7 @@ type MusicShareMsgChain struct {
 
 type ForwardMessageMsgChain struct {
 	Type     MessageChainType `json:"type"`
-	NodeList []MessageChain   `json:"nodeList"`
+	NodeList []ForwardMessage `json:"nodeList"`
 }
 
 type FileMsgChain struct {
